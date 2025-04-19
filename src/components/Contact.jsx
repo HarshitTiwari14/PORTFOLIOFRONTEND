@@ -13,10 +13,14 @@ export const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/contact', formData);
+      const API_BASE = import.meta.env.VITE_API_BASE_URL;
+      console.log('Sending form data:', formData); // ✅ Console log before sending
+      const response = await axios.post('http://localhost:5000/api/contact',`${API_BASE}/api/contact`, formData);
+
       setResponseMessage(response.data.message);
-      setFormData({ name: '', email: '', message: '' }); // Clear the form
+      setFormData({ name: '', email: '', message: '' }); // Clear form after submit
     } catch (error) {
+      console.error('Submission error:', error); // ✅ Optional: log full error
       setResponseMessage(error.response?.data?.error || 'Something went wrong.');
     }
   };
