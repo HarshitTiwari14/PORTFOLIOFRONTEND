@@ -13,72 +13,78 @@ export const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const API_BASE = import.meta.env.VITE_API_BASE_URL;
-      console.log('Sending form data:', formData); // ✅ Console log before sending
-      const response = await axios.post('http://localhost:5000/api/contact',`${API_BASE}/api/contact`, formData);
+      const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+      console.log('Sending form data:', formData);
+      
+      const response = await axios.post(`${API_BASE}/api/contact`, formData);
 
       setResponseMessage(response.data.message);
-      setFormData({ name: '', email: '', message: '' }); // Clear form after submit
+      setFormData({ name: '', email: '', message: '' });
     } catch (error) {
-      console.error('Submission error:', error); // ✅ Optional: log full error
+      console.error('Submission error:', error);
       setResponseMessage(error.response?.data?.error || 'Something went wrong.');
     }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen border-gray-900">
-      <h1 className="text-3xl font-bold mb-6 text-white">Contact Us</h1>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+      <h1 className="text-3xl font-bold mb-6 text-purple-700">Contact Us</h1>
+      
       <form className="w-full max-w-md bg-white p-6 shadow-md rounded-lg" onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700" htmlFor="name">
+          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
             Name
           </label>
           <input
-            className="w-full px-3 py-2 border rounded-lg"
             type="text"
-            id="name"
             name="name"
+            id="name"
+            required
             value={formData.name}
             onChange={handleChange}
-            required
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
           />
         </div>
+
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700" htmlFor="email">
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
             Email
           </label>
           <input
-            className="w-full px-3 py-2 border rounded-lg"
             type="email"
-            id="email"
             name="email"
+            id="email"
+            required
             value={formData.email}
             onChange={handleChange}
-            required
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
           />
         </div>
+
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700" htmlFor="message">
+          <label htmlFor="message" className="block text-sm font-medium text-gray-700">
             Message
           </label>
           <textarea
-            className="w-full px-3 py-2 border rounded-lg"
-            id="message"
             name="message"
+            id="message"
+            required
             value={formData.message}
             onChange={handleChange}
-            required
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
           ></textarea>
         </div>
+
         <button
           type="submit"
-          className="w-full bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700"
+          className="w-full bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition"
         >
           Submit
         </button>
       </form>
+
       {responseMessage && (
-        <p className="mt-4 text-center text-lg text-gray-700">{responseMessage}</p>
+        <p className="mt-4 text-center text-lg text-green-700 font-medium">{responseMessage}</p>
       )}
     </div>
   );
