@@ -4,32 +4,39 @@ import axios from 'axios';
 export const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [responseMessage, setResponseMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setResponseMessage('');
+    setErrorMessage('');
     try {
       const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
       console.log('Sending form data:', formData);
-      
-      const response = await axios.post(`${API_BASE}/api/contact`, formData);
 
-      setResponseMessage(response.data.message);
+      const response = await axios.post(`${API_BASE}/api/contact`, formData, {
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      setResponseMessage(response.data.message || 'Message sent successfully!');
       setFormData({ name: '', email: '', message: '' });
     } catch (error) {
       console.error('Submission error:', error);
-      setResponseMessage(error.response?.data?.error || 'Something went wrong.');
+      setErrorMessage(
+        error.response?.data?.error || 'Something went wrong. Please try again later.'
+      );
     }
   };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
       <h1 className="text-3xl font-bold mb-6 text-purple-700">Contact Us</h1>
-      
+
       <form className="w-full max-w-md bg-white p-6 shadow-md rounded-lg" onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="name" className="block text-sm font-medium text-gray-700">
@@ -72,6 +79,7 @@ export const Contact = () => {
             value={formData.message}
             onChange={handleChange}
             className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+            rows="4"
           ></textarea>
         </div>
 
@@ -84,7 +92,10 @@ export const Contact = () => {
       </form>
 
       {responseMessage && (
-        <p className="mt-4 text-center text-lg text-green-700 font-medium">{responseMessage}</p>
+        <p className="mt-4 text-center text-green-700 font-semibold">{responseMessage}</p>
+      )}
+      {errorMessage && (
+        <p className="mt-4 text-center text-red-600 font-medium">{errorMessage}</p>
       )}
     </div>
   );
