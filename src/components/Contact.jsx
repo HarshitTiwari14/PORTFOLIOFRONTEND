@@ -1,102 +1,60 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 
-export const Contact = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [responseMessage, setResponseMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setResponseMessage('');
-    setErrorMessage('');
-    try {
-      const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
-      console.log('Sending form data:', formData);
-
-      const response = await axios.post(`${API_BASE}/api/contact`, formData, {
-        headers: { 'Content-Type': 'application/json' },
-      });
-
-      setResponseMessage(response.data.message || 'Message sent successfully!');
-      setFormData({ name: '', email: '', message: '' });
-    } catch (error) {
-      console.error('Submission error:', error);
-      setErrorMessage(
-        error.response?.data?.error || 'Something went wrong. Please try again later.'
-      );
-    }
-  };
-
+const Contact = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-      <h1 className="text-3xl font-bold mb-6 text-purple-700">Contact Us</h1>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white px-6 py-16">
+      <h1 className="text-4xl font-bold text-purple-400 mb-10">Contact Me</h1>
 
-      <form className="w-full max-w-md bg-white p-6 shadow-md rounded-lg" onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-            Name
-          </label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            required
-            value={formData.name}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
-          />
+      <div className="space-y-8 text-lg w-full max-w-xl">
+
+        <div className="flex items-center gap-4">
+          {/* Phone SVG */}
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h2l.4 2M7 5h2l.4 2m2.6 0a11.038 11.038 0 015.6 5.6l2-1c.9-.3 1.9.4 1.9 1.4v3c0 1.1-1 2-2.1 2-6.6 0-12-5.4-12-12 0-1.1.9-2.1 2-2.1h3c1 0 1.7 1 1.4 1.9l-1 2z" />
+          </svg>
+          <span>+91 6264509973</span>
         </div>
 
-        <div className="mb-4">
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-            Email
-          </label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            required
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
-          />
+        <div className="flex items-center gap-4">
+          {/* Email SVG */}
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12H8m8 0l-4-4m4 4l-4 4M4 6h16M4 6v12a2 2 0 002 2h12a2 2 0 002-2V6" />
+          </svg>
+          <span>harshittiwari0014@gmail.com</span>
         </div>
 
-        <div className="mb-4">
-          <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-            Message
-          </label>
-          <textarea
-            name="message"
-            id="message"
-            required
-            value={formData.message}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
-            rows="4"
-          ></textarea>
+        <div className="flex items-center gap-4">
+          {/* Instagram SVG */}
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-pink-500" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M7.75 2A5.75 5.75 0 002 7.75v8.5A5.75 5.75 0 007.75 22h8.5A5.75 5.75 0 0022 16.25v-8.5A5.75 5.75 0 0016.25 2h-8.5zM12 8a4 4 0 110 8 4 4 0 010-8zm6.5-1a1.5 1.5 0 11-3.001.001A1.5 1.5 0 0118.5 7zM12 10a2 2 0 100 4 2 2 0 000-4z"/>
+          </svg>
+          <a
+            href="https://www.instagram.com/harshit_tiwari__14/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline"
+          >
+            @harshit_tiwari__14
+          </a>
         </div>
 
-        <button
-          type="submit"
-          className="w-full bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition"
-        >
-          Submit
-        </button>
-      </form>
-
-      {responseMessage && (
-        <p className="mt-4 text-center text-green-700 font-semibold">{responseMessage}</p>
-      )}
-      {errorMessage && (
-        <p className="mt-4 text-center text-red-600 font-medium">{errorMessage}</p>
-      )}
+        <div className="flex items-center gap-4">
+          {/* LinkedIn SVG */}
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M4.98 3C3.34 3 2 4.34 2 5.98s1.34 2.98 2.98 2.98c1.64 0 2.98-1.34 2.98-2.98S6.62 3 4.98 3zM2 8.98h6V22H2V8.98zm7.982 0H17.9v1.798h.082c.79-1.498 2.724-2.998 5.598-2.998 5.992 0 7.1 3.998 7.1 9.198V22h-6v-6.098c0-1.45-.028-3.298-2.006-3.298-2.006 0-2.314 1.57-2.314 3.194V22h-6V8.98z"/>
+          </svg>
+          <a
+            href="https://www.linkedin.com/in/harshit-tiwari-a928a3258/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline"
+          >
+            linkedin.com/in/harshit_tiwari
+          </a>
+        </div>
+      </div>
     </div>
   );
 };
+
+export default Contact;

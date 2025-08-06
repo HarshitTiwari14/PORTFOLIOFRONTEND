@@ -3,11 +3,15 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Skills from './components/Skills';
 import Experience from './components/Experience';
-import { Contact } from './components/Contact';
+import Contact from './components/Contact';
 import About from './components/About';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import Project1 from './components/project1';
+import Project2 from './components/project2';
+import Project3 from './components/project3';
+import Exp1 from './components/exp1';
 
 const App = () => {
   return (
@@ -20,8 +24,13 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/skills" element={<Skills />} />
         <Route path="/experience" element={<Experience />} />
+        <Route path="/project1" element={<Project1 />} />
         <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/contact" element={<Contact/>} />
+        <Route path="/project2" element={<Project2/>} />
+        <Route path="/project3" element={<Project3/>} />
+        <Route path="/exp1" element={<Exp1/>} />
+        
       </Routes>
     </Router>
   );
