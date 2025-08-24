@@ -1,0 +1,87 @@
+{
+  "name": "Harshit Tiwari",
+  "intro": "I am a B.Tech student in Internet of Things at Madhav Institute of Technology and Science (MITS), Gwalior (2022–2026). I am passionate about IoT, AI/ML, and full-stack development, with hands-on experience in building real-world applications and leading student communities like IEEE PES.",
+  
+  "skills": [
+    "MERN Stack", "IoT", "AI/ML", "Data Analysis", 
+    "Python", "Java", "JavaScript", "SQL", "MongoDB", "MySQL", "Redis",
+    "React.js", "Node.js", "Express.js", "Flask", "Docker", "WordPress",
+    "Google Cloud Platform", "Node-RED", "Cloudinary", "Git"
+  ],
+
+  "projects": [
+    {
+      "title": "AI-IoT Solar Dust Cleaning System",
+      "description": "AI/ML-based IoT system that uses CNN (VGG16 architecture) to classify dusty vs clean solar panels and controls a cleaning pump via ESP32, improving solar efficiency by 94%."
+    },
+    {
+      "title": "Air Quality Prediction",
+      "description": "Machine learning model using AQI dataset (SO2, NO2, PM2.5, etc.) with preprocessing and AQI sub-index calculation, deployed with Flask UI for real-time prediction."
+    },
+    {
+      "title": "Real-time Chat Application",
+      "description": "Built a scalable chat app using Node.js, Express, MongoDB, RabbitMQ, and Socket.io with microservice architecture. Integrated Docker for deployment and achieved sub-100ms latency."
+    },
+    {
+      "title": "RF Framework for Parkinson’s Diagnosis",
+      "description": "Developed a Random Forest–based ML framework to predict Parkinson’s Disease using biomedical voice features (jitter, shimmer, Fo, NHR, HNR). Integrated with Flask for real-time predictions."
+    },
+    {
+      "title": "Diabetes Prediction Web App",
+      "description": "Created an SVM-based ML application that predicts diabetes with 92% accuracy. Built a Flask web app for real-time user input and diagnosis."
+    }
+  ],
+
+  "experience": [
+    {
+      "company": "National Thermal Power Corporation (NTPC)",
+      "role": "Vocational Training Intern",
+      "date": "July 2024 – August 2024",
+      "details": [
+        "Monitored IP-based CCTV systems and detected anomalies for operational safety.",
+        "Assisted in sensor installation and calibration for the Steam and Water Analysis System (SWAS).",
+        "Contributed to an IoT-powered water dashboard for real-time monitoring."
+      ]
+    }
+  ],
+
+  "publications": [
+    {
+      "title": "Smart Dust Mitigation System for Photovoltaics",
+      "event": "International Conference on Recent Innovations and Trends, NIT Patna",
+      "date": "May 2025",
+      "description": "Presented research on photovoltaic efficiency enhancement and automated dust cleaning mechanisms."
+    }
+  ],
+
+  "leadership": [
+    {
+      "role": "Chairperson, IEEE PES Executive Committee (State Level)",
+      "date": "May 2025 – Present",
+      "details": [
+        "Leading IEEE PES ExCom at state level, overseeing chapter activities and fostering collaborations."
+      ]
+    },
+    {
+      "role": "Volunteer, IEEE PES SYP Team (National Level)",
+      "date": "Jan 2025 – Present",
+      "details": [
+        "Coordinated student engagement initiatives, outreach programs, and increased IEEE PES visibility."
+      ]
+    },
+    {
+      "role": "Student Editor, ISCMCTR Conference, MITS",
+      "date": "May 2023 – Present",
+      "details": [
+        "Coordinated with authors/reviewers, managed abstracts, and ensured academic standards."
+      ]
+    },
+    {
+      "role": "Chairperson, IEEE PES Society MITS",
+      "date": "Dec 2023 – Dec 2024",
+      "details": [
+        "Directed PES society goals, represented PES at IEEE Board meetings, and managed funding allocations."
+      ]
+    }
+  ]
+}

@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
+// Animation Variants
 const containerVariant = {
   hidden: { opacity: 0, y: 50 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      staggerChildren: 0.2,
-      duration: 0.8,
-    },
+    transition: { staggerChildren: 0.2, duration: 0.8 },
   },
 };
 
@@ -18,9 +16,44 @@ const itemVariant = {
   visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
 };
 
+// ✅ Skills Data with Category Colors
+const skillsData = [
+  {
+    title: "Languages",
+    description: "Programming languages I use frequently",
+    color: "bg-gradient-to-r from-blue-500 to-indigo-600",
+    items: ["Python", "Java", "JavaScript"]
+  },
+  {
+    title: "Databases",
+    description: "Database systems I’ve worked with",
+    color: "bg-gradient-to-r from-green-500 to-emerald-600",
+    items: ["MongoDB", "MySQL", "Redis"]
+  },
+  {
+    title: "Frameworks & Tools",
+    description: "Frameworks and developer tools",
+    color: "bg-gradient-to-r from-purple-500 to-pink-600",
+    items: ["Flask", "Express.js", "Node.js", "React.js", "Docker", "WordPress", "Git"]
+  },
+  {
+    title: "Cloud / Platforms",
+    description: "Cloud and platforms for deployment",
+    color: "bg-gradient-to-r from-orange-400 to-yellow-500",
+    items: ["Google Cloud Platform", "Node-RED", "Cloudinary"]
+  },
+  {
+    title: "Developer Tools",
+    description: "Other tools I use regularly",
+    color: "bg-gradient-to-r from-gray-600 to-gray-800",
+    items: ["MongoDB Compass", "MySQL Workbench", "Redis CLI"]
+  }
+];
+
 const Skills = () => {
   const [isMobile, setIsMobile] = useState(false);
 
+  // ✅ Responsive Detection
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
@@ -30,40 +63,6 @@ const Skills = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const skillCategories = [
-    {
-      title: "Hardware",
-      description: "Arduino, Raspberry Pi, ESP32, NodeMCU, Sensors, Transducers",
-      items: [
-        { img: './images/arduino14.png', borderColor: 'border-teal-900', alt: "Arduino" }
-      ]
-    },
-    {
-      title: "Software",
-      description: "React, Node.js, Express.js, Node-RED",
-      items: [
-        { img: './images/Images14.png', borderColor: 'border-sky-800', alt: "React" },
-        { img: './images/nodejs14.png', borderColor: 'border-green-500', alt: "Node.js" },
-        { img: './images/nodered14.png', borderColor: 'border-rose-900', alt: "Node-RED" }
-      ]
-    },
-    {
-      title: "Database",
-      description: "MongoDB, Microsoft SQL Server, MySQL",
-      items: [
-        { img: './images/Mongodb14.png', borderColor: 'border-green-800', alt: "MongoDB" },
-        { img: './images/sql14.png', borderColor: 'border-amber-200', alt: "SQL" }
-      ]
-    },
-    {
-      title: "Data Visualization",
-      description: "Power BI, Thinkspeak (Cloud Based Visualization)",
-      items: [
-        { img: './images/power-bi-icon14.png', borderColor: 'border-amber-500', alt: "Power BI" }
-      ]
-    }
-  ];
-
   return (
     <motion.div
       className="border-b border-neutral-900 pb-16 px-4 md:px-8 lg:px-16"
@@ -71,6 +70,7 @@ const Skills = () => {
       initial="hidden"
       animate="visible"
     >
+      {/* Section Title */}
       <motion.h1 
         className={`mt-16 mb-12 text-center ${isMobile ? 'text-3xl' : 'text-4xl'} text-white`} 
         variants={itemVariant}
@@ -78,40 +78,40 @@ const Skills = () => {
         Skills
       </motion.h1>
 
-      {skillCategories.map((category, index) => (
+      {/* ✅ Dynamic Rendering of Skills */}
+      {skillsData.map((category, index) => (
         <motion.div 
           key={index}
-          className={`flex flex-col gap-6 mb-16`}
+          className="flex flex-col gap-6 mb-12"
           variants={containerVariant}
         >
+          {/* Category Title */}
           <motion.h2 
-            className={`text-2xl md:text-3xl lg:text-4xl font-light text-white px-4`} 
+            className="text-2xl md:text-3xl lg:text-4xl font-light text-white px-4"
             variants={itemVariant}
           >
             {category.title}
           </motion.h2>
-          
+
+          {/* Category Description */}
           <motion.p 
-            className={`text-lg md:text-xl font-light text-white px-4`} 
+            className="text-lg md:text-xl font-light text-gray-300 px-4"
             variants={itemVariant}
           >
             {category.description}
           </motion.p>
-          
-          <div className="flex flex-wrap justify-start gap-4 px-4">
-            {category.items.map((item, itemIndex) => (
+
+          {/* Items (Colored Boxes) */}
+          <div className="flex flex-wrap gap-3 px-4">
+            {category.items.map((skill, idx) => (
               <motion.div
-                key={itemIndex}
-                className={`rounded-2xl border-4 ${item.borderColor} p-2 w-24 h-24 md:w-32 md:h-32 flex items-center justify-center`}
+                key={idx}
+                className={`${category.color} text-white px-4 py-2 rounded-xl shadow-md text-sm md:text-base font-medium`}
                 variants={itemVariant}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <img 
-                  src={item.img} 
-                  className="rounded-lg object-contain w-full h-full" 
-                  alt={item.alt} 
-                />
+                {skill}
               </motion.div>
             ))}
           </div>
